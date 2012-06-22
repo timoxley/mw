@@ -43,8 +43,8 @@ router.get '/resource',
         next()
     render jsonView
 
-// will render `'{"foo":"bar","fitz":[1,2,3,4,5,6,7,8,9,10]}'` to the
-// client
+# will render `'{"foo":"bar","fitz":[1,2,3,4,5,6,7,8,9,10]}'` to the
+# client
 ```
 
 

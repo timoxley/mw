@@ -7,7 +7,7 @@ node middleware that handles redirection.
 ## Usage
 
 ```coffeescript
-redirect = require 'middleware-redirect'
+{redirect} = require 'middleware'
 
 # redirects `/foo` to `/bar`
 router.get '/foo',

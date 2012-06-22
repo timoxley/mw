@@ -1,4 +1,4 @@
-deepSet = require './deepSet'
+{deepSet} = require './utility'
 error = require './error-middleware'
 
 module.exports = bind = (name, f) -> (req, res, next) ->

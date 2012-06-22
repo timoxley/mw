@@ -47,7 +47,6 @@ router.get '/resource',
 # client
 ```
 
-
 # bind
 
 Transforms an asynchronous function into a middleware.
@@ -95,10 +94,8 @@ and a Status Code of 500 is returned to the user.
 ```coffeescript
 router.get '/user',
     bind 'users.all', (req, next) -> dao.user.all next
-    (req, res, next) ->
-        console.log 'loaded users', req.loaded.users.all
-        # will output the result of `dao.user.all`
-        next()
+    (req, res, next) -> next console.log 'loaded users', req.loaded.users.all
+    # will output the result of `dao.user.all`
     render view.user.all
 
 router.get '/user/:id',
@@ -135,9 +132,27 @@ router.post '/user/:id',
 
 # flash
 
-used for setting, loading and display flashes.
+used for setting, loading flash messages.
 
-readme and howto will follow. ;)
+```coffeescript
+
+{loadFlash, flash, redirect, render} = require 'mw'
+
+router.post '/foo',
+    flash 'hello flash'
+    redirect 'back'
+
+router.get '/foo'
+    loadFlash
+    (req, res, next) -> next console.log req.loaded.flash
+    # prints {message: 'hello flash', type: 'info'
+    # view.foo will receive `req.loaded` and can print them to the dom
+    render view.foo
+
+```
+
+A view helper for displaying alerts can be found in
+[dombox](https://github.com/mren/dombox).
 
 # condition
 
@@ -145,7 +160,7 @@ readme and howto will follow. ;)
 
 ```coffeescript
 
-condition = require 'middleware-condition'
+{condition} = require 'mw'
 
 # the condition is dependant on the state
 # in this example we use this simplified conditions
@@ -158,9 +173,11 @@ isLoggedIn = (req) -> req.session?.user?
 log = (msg) -> (req, res, next) -> next console.log msg
 
 
+# for details about sequenz see https://github.com/snd/sequenz
 http.createServer sequenz [
     condition alwaysTrue log('this middleware is executed'), log('this middleware is ignored')
     condition alwaysFalse log('this middleware is ignored'), log('this middleware is executed')
     condition alwaysFalse log('nothing is shown and the next middleware is executed')
     (req, res, next) -> req.end()
+]
 ```

@@ -7,3 +7,4 @@ module.exports =
     loadFlash: require './loadFlash'
     condition: require './condition'
     notFound: require './notFound'
+    utility: require './utility'

@@ -6,3 +6,4 @@ module.exports =
     flash: require './flash'
     loadFlash: require './loadFlash'
     condition: require './condition'
+    notFound: require './notFound'

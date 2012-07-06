@@ -35,3 +35,17 @@ module.exports =
                 test.expect 2
                 test.done()
         middleware {}, res
+
+    'two functions': (test) ->
+        middleware = redirect (req) -> req.foo
+
+        res0 = (next) ->
+            writeHead: (code, header) -> test.equal header.Location, 0
+            end: -> next()
+
+        res1 =
+            writeHead: (code, header) -> test.equal header.Location, 1
+            end: -> test.done()
+
+        middleware {foo: 0}, res0 ->
+            middleware {foo: 1}, res1

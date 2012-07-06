@@ -5,8 +5,9 @@ tempCode = 302
 
 module.exports = (location, permanent = false) -> (req, res) ->
     statusCode = if permanent then permCode else tempCode
-    location = location req if  isFunction location
-    location = if location is 'back' then req.url else location
-    console.log "redirect to #{location}"
-    res.writeHead statusCode, {Location: location}
+    loc = location
+    loc = loc req if  isFunction loc
+    loc = if loc is 'back' then req.url else loc
+    console.log "redirect to #{loc}"
+    res.writeHead statusCode, {Location: loc}
     res.end()

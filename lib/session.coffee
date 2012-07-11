@@ -4,7 +4,7 @@ store = require './store'
 
 makeId = -> hat 128*4
 
-module.exports = (store, key = 'sid') -> (req, res, next) ->
+module.exports = (store = module.exports.store.memory(), key = 'sid') -> (req, res, next) ->
     throw new Error 'no cookies' unless req?.cookies?
     id = req.cookies[key]
     id ?= makeId()

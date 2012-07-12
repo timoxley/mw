@@ -8,4 +8,5 @@ module.exports =
     condition: require './condition'
     notFound: require './notFound'
     session: require './session'
+    log: require './log'
     utility: require './utility'

@@ -1,6 +1,6 @@
 {
     "name": "mw",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "author": "Mark Engel <mark.c.engel@gmail.com> (https://github.com/mren)",
     "contributors": [
         "Maximilian Krüger <kruemaxi@googlemail.com> (https://github.com/snd)"
@@ -8,7 +8,7 @@
     "dependencies": {
         "underscore": "1.3.3",
         "hat": "0.0.3",
-        "mohair": "0.1.0"
+        "mohair": "0.1.1"
     },
     "main": "lib/"
 }

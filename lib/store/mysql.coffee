@@ -14,5 +14,5 @@ module.exports = (mysql, table = 'session') ->
     set: (id, session, next) ->
         m = mohair()
         stringified = JSON.stringify session
-        m.raw 'INSERT INTO session (id, session) VALUES (?, ?) ON DUPLICATE KEY UPDATE session=?;', id, stringified, stringified
+        m.insert table, {id: id, session: stringified}, {session: stringified}
         mysql.query m.sql(), m.params(), next
